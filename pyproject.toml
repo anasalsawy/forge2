@@ -1,0 +1,33 @@
+[project]
+name = "forge2"
+version = "1.0.0"
+description = "A hard-gated six-floor research and six-floor build pipeline for CrewAI"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "crewai[tools]>=1.15.11,<2",
+  "pydantic>=2.7,<3",
+  "pydantic-settings>=2.4,<3",
+  "requests>=2.32,<3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.12,<1"]
+
+[project.scripts]
+forge2 = "forge2.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/forge2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
